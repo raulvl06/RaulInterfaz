@@ -39,7 +39,7 @@
 
                         <!-- LOGO / TITULO -->
 
-                        <TextBlock Text="RAULL STORE"
+                        <TextBlock Text="RAUL STORE"
                                    FontSize="24"
                                    FontWeight="Bold"
                                    Foreground="#66C0F4"
