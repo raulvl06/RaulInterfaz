@@ -1,12 +1,537 @@
-﻿<Window x:Class="RaulInterfaz.MainWindow"
+﻿<Window x:Class="MiProyecto.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RaulInterfaz"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Mi tienda"
+        Width="1000"
+        Height="650"
+        WindowStartupLocation="CenterScreen"
+        Background="#171A21">
+
     <Grid>
-    
+
+        <!-- ================================================= -->
+        <!-- FONDO PRINCIPAL                                   -->
+        <!-- ================================================= -->
+
+        <Border Background="#1B2838"
+                Margin="30"
+                CornerRadius="10"
+                BorderBrush="#2A475E"
+                BorderThickness="1">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <!-- ================================================= -->
+                <!-- BARRA SUPERIOR                                    -->
+                <!-- ================================================= -->
+
+                <Border Grid.Row="0"
+                        Background="#171A21"
+                        CornerRadius="10,10,0,0">
+
+                    <Grid>
+
+                        <!-- LOGO / TITULO -->
+
+                        <TextBlock Text="RAULL STORE"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="#66C0F4"
+                                   VerticalAlignment="Center"
+                                   Margin="25,0,0,0"/>
+
+
+                        <!-- MENU -->
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+
+                            <Button Content="TIENDA"
+                                    Click="Tienda_Click"
+                                    Margin="5"
+                                    Padding="18,8"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    FontWeight="Bold"/>
+
+                            <Button Content="BIBLIOTECA"
+                                    Click="Biblioteca_Click"
+                                    Margin="5"
+                                    Padding="18,8"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    FontWeight="Bold"/>
+
+                            <Button Content="COMUNIDAD"
+                                    Click="Comunidad_Click"
+                                    Margin="5"
+                                    Padding="18,8"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    FontWeight="Bold"/>
+
+                            <Button Content="SOPORTE"
+                                    Click="Soporte_Click"
+                                    Margin="5"
+                                    Padding="18,8"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    FontWeight="Bold"/>
+
+                        </StackPanel>
+
+
+                        <!-- PERFIL -->
+
+                        <Button Content="Mi perfil"
+                                Grid.Row="0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0,0,20,0"
+                                Padding="15,8"
+                                Click="Perfil_Click"
+                                Background="#2A475E"
+                                Foreground="White"
+                                BorderThickness="0"/>
+
+                    </Grid>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- CONTENIDO                                         -->
+                <!-- ================================================= -->
+
+                <Border Grid.Row="1"
+                        Margin="15"
+                        Background="#1B2838"
+                        CornerRadius="5">
+
+                    <Grid x:Name="Contenido">
+
+
+                        <!-- ================================================= -->
+                        <!-- BIBLIOTECA                                       -->
+                        <!-- ================================================= -->
+
+                        <Grid x:Name="Biblioteca"
+                              Visibility="Visible">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <!-- =============================== -->
+                            <!-- MENU LATERAL                     -->
+                            <!-- =============================== -->
+
+                            <Border Grid.Column="0"
+                                    Background="#171A21"
+                                    CornerRadius="5,0,0,5">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="BIBLIOTECA"
+                                               FontSize="20"
+                                               FontWeight="Bold"
+                                               Foreground="White"
+                                               Margin="20,25,20,15"/>
+
+
+                                    <Button Content="Minecraft"
+                                            Margin="15,5"
+                                            Height="40"
+                                            Click="Juego1_Click"
+                                            Background="#2A475E"
+                                            Foreground="White"
+                                            BorderThickness="0"/>
+
+                                    <Button Content="FC 27"
+                                            Margin="15,5"
+                                            Height="40"
+                                            Click="Juego2_Click"
+                                            Background="#2A475E"
+                                            Foreground="White"
+                                            BorderThickness="0"/>
+
+                                    <Button Content="Overwatch"
+                                            Margin="15,5"
+                                            Height="40"
+                                            Click="Juego3_Click"
+                                            Background="#2A475E"
+                                            Foreground="White"
+                                            BorderThickness="0"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+
+                            <!-- =============================== -->
+                            <!-- JUEGOS                           -->
+                            <!-- =============================== -->
+
+                            <ScrollViewer Grid.Column="1"
+                                          VerticalScrollBarVisibility="Auto"
+                                          HorizontalScrollBarVisibility="Disabled">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Mis juegos"
+                                               FontSize="28"
+                                               FontWeight="Bold"
+                                               Foreground="White"
+                                               Margin="25,20,25,5"/>
+
+                                    <TextBlock Text="Tus juegos disponibles"
+                                               FontSize="14"
+                                               Foreground="#8F98A0"
+                                               Margin="25,0,25,15"/>
+
+
+                                    <WrapPanel Margin="15,0,15,20">
+
+
+                                        <!-- ================================= -->
+                                        <!-- MINECRAFT                          -->
+                                        <!-- ================================= -->
+
+                                        <Border Width="200"
+                                                Height="260"
+                                                Margin="10"
+                                                CornerRadius="8"
+                                                Background="#16202D"
+                                                BorderBrush="#2A475E"
+                                                BorderThickness="1">
+
+                                            <Grid>
+
+                                                <Image Source="/Imagenes/Minecraft.png"
+                                                       Stretch="UniformToFill"/>
+
+                                                <!-- OSCURECER IMAGEN -->
+
+                                                <Border Background="#90000000"/>
+
+
+                                                <!-- TEXTO -->
+
+                                                <StackPanel VerticalAlignment="Bottom"
+                                                            Margin="15">
+
+                                                    <TextBlock Text="Minecraft"
+                                                               FontSize="22"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+
+                                                    <TextBlock Text="En tu biblioteca"
+                                                               FontSize="13"
+                                                               Foreground="#66C0F4"
+                                                               Margin="0,5,0,0"/>
+
+                                                </StackPanel>
+
+                                            </Grid>
+
+                                        </Border>
+
+
+                                        <!-- ================================= -->
+                                        <!-- FC 27                              -->
+                                        <!-- ================================= -->
+
+                                        <Border Width="200"
+                                                Height="260"
+                                                Margin="10"
+                                                CornerRadius="8"
+                                                Background="#16202D"
+                                                BorderBrush="#2A475E"
+                                                BorderThickness="1">
+
+                                            <Grid>
+
+                                                <Image Source="/Imagenes/FC27.png"
+                                                       Stretch="UniformToFill"/>
+
+                                                <Border Background="#90000000"/>
+
+
+                                                <StackPanel VerticalAlignment="Bottom"
+                                                            Margin="15">
+
+                                                    <TextBlock Text="FC 27"
+                                                               FontSize="22"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+
+                                                    <TextBlock Text="En tu biblioteca"
+                                                               FontSize="13"
+                                                               Foreground="#66C0F4"
+                                                               Margin="0,5,0,0"/>
+
+                                                </StackPanel>
+
+                                            </Grid>
+
+                                        </Border>
+
+
+                                        <!-- ================================= -->
+                                        <!-- OVERWATCH                          -->
+                                        <!-- ================================= -->
+
+                                        <Border Width="200"
+                                                Height="260"
+                                                Margin="10"
+                                                CornerRadius="8"
+                                                Background="#16202D"
+                                                BorderBrush="#2A475E"
+                                                BorderThickness="1">
+
+                                            <Grid>
+
+                                                <Image Source="/Imagenes/Overwatch.png"
+                                                       Stretch="UniformToFill"/>
+
+                                                <Border Background="#90000000"/>
+
+
+                                                <StackPanel VerticalAlignment="Bottom"
+                                                            Margin="15">
+
+                                                    <TextBlock Text="Overwatch"
+                                                               FontSize="22"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"/>
+
+                                                    <TextBlock Text="En tu biblioteca"
+                                                               FontSize="13"
+                                                               Foreground="#66C0F4"
+                                                               Margin="0,5,0,0"/>
+
+                                                </StackPanel>
+
+                                            </Grid>
+
+                                        </Border>
+
+
+                                    </WrapPanel>
+
+                                </StackPanel>
+
+                            </ScrollViewer>
+
+                        </Grid>
+
+
+                        <!-- ================================================= -->
+                        <!-- TIENDA                                             -->
+                        <!-- ================================================= -->
+
+                        <StackPanel x:Name="Tienda"
+                                    Visibility="Collapsed"
+                                    Background="#1B2838">
+
+                            <TextBlock Text="TIENDA"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="25,25,25,5"/>
+
+                            <TextBlock Text="Descubre nuevos juegos"
+                                       FontSize="14"
+                                       Foreground="#8F98A0"
+                                       Margin="25,0,25,25"/>
+
+
+                            <Button Content="Diablo IV     —     60 €"
+                                    Width="300"
+                                    Height="55"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="ComprarDiablo_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    FontSize="16"/>
+
+                            <Button Content="Fortnite     —     GRATIS"
+                                    Width="300"
+                                    Height="55"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="ComprarFortnite_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    FontSize="16"/>
+
+                            <Button Content="Call of Duty     —     70 €"
+                                    Width="300"
+                                    Height="55"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="ComprarCallOfDuty_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    FontSize="16"/>
+
+                        </StackPanel>
+
+
+                        <!-- ================================================= -->
+                        <!-- COMUNIDAD                                          -->
+                        <!-- ================================================= -->
+
+                        <StackPanel x:Name="Comunidad"
+                                    Visibility="Collapsed"
+                                    Background="#1B2838">
+
+                            <TextBlock Text="COMUNIDAD"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="25,25,25,5"/>
+
+                            <TextBlock Text="Conecta con otros jugadores"
+                                       FontSize="14"
+                                       Foreground="#8F98A0"
+                                       Margin="25,0,25,25"/>
+
+
+                            <Button Content="Foro"
+                                    Width="200"
+                                    Height="50"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="Foro_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"/>
+
+                            <Button Content="Amigos"
+                                    Width="200"
+                                    Height="50"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="Amigos_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"/>
+
+                        </StackPanel>
+
+
+                        <!-- ================================================= -->
+                        <!-- SOPORTE                                            -->
+                        <!-- ================================================= -->
+
+                        <StackPanel x:Name="Soporte"
+                                    Visibility="Collapsed"
+                                    Background="#1B2838">
+
+                            <TextBlock Text="SOPORTE"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="25,25,25,5"/>
+
+                            <TextBlock Text="¿Necesitas ayuda?"
+                                       FontSize="14"
+                                       Foreground="#8F98A0"
+                                       Margin="25,0,25,25"/>
+
+
+                            <Button Content="Ayuda"
+                                    Width="200"
+                                    Height="50"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="Ayuda_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"/>
+
+                            <Button Content="Contactar"
+                                    Width="200"
+                                    Height="50"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="Contactar_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"/>
+
+                        </StackPanel>
+
+
+                        <!-- ================================================= -->
+                        <!-- PERFIL                                             -->
+                        <!-- ================================================= -->
+
+                        <StackPanel x:Name="Perfil"
+                                    Visibility="Collapsed"
+                                    Background="#1B2838">
+
+                            <TextBlock Text="MI PERFIL"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Margin="25,25,25,5"/>
+
+                            <TextBlock Text="Gestiona tu cuenta"
+                                       FontSize="14"
+                                       Foreground="#8F98A0"
+                                       Margin="25,0,25,25"/>
+
+
+                            <Button Content="Mi cuenta"
+                                    Width="200"
+                                    Height="50"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="MiCuenta_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"/>
+
+                            <Button Content="Salir"
+                                    Width="200"
+                                    Height="50"
+                                    HorizontalAlignment="Left"
+                                    Margin="25,5"
+                                    Click="Salir_Click"
+                                    Background="#2A475E"
+                                    Foreground="White"
+                                    BorderThickness="0"/>
+
+                        </StackPanel>
+
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+
     </Grid>
+
 </Window>
