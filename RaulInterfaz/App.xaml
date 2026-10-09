@@ -3,5 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
 
+        <!-- PALETA DE COLORES STEAM/DISCORD DARK -->
+        <SolidColorBrush x:Key="BgRoot" Color="#0b0f19"/>
+        <SolidColorBrush x:Key="BgPanel" Color="#121824"/>
+        <SolidColorBrush x:Key="BgCard" Color="#182232"/>
+        <SolidColorBrush x:Key="BgCardHover" Color="#202e42"/>
+        <SolidColorBrush x:Key="AccentBlue" Color="#0066cc"/>
+        <SolidColorBrush x:Key="AccentBlueHover" Color="#0080ff"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#f1f5f9"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#8b9bb4"/>
+        <SolidColorBrush x:Key="BorderDark" Color="#202c3d"/>
+        <SolidColorBrush x:Key="ErrorRed" Color="#ef4444"/>
+
+        <!-- ESTILO GLOBAL PARA BOTONES DE MENÚ -->
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondary}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="6" 
+                                Padding="14,8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource BgCardHover}"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ESTILO GLOBAL PARA BOTONES DE ACCIÓN (AZULES) -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource AccentBlue}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="15,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AccentBlueHover}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

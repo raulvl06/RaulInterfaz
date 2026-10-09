@@ -75,6 +75,21 @@ namespace MiProyecto
             MessageBox.Show("Abriendo Overwatch", "GameStation", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        private void Juego4_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Abriendo Grand Theft Auto V", "GameStation", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Juego5_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Abriendo Cyberpunk 2077", "GameStation", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Juego6_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Abriendo Counter-Strike 2", "GameStation", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         private void ComprarDiablo_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Comprando Diablo IV", "GameStation Store", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -88,6 +103,21 @@ namespace MiProyecto
         private void ComprarCallOfDuty_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Comprando Call of Duty", "GameStation Store", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void ComprarFC27_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Comprando EA Sports FC 27", "GameStation Store", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void ComprarGTA6_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Comprando Grand Theft Auto VI", "GameStation Store", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void ComprarValorant_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Comprando Valorant", "GameStation Store", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Foro_Click(object sender, RoutedEventArgs e)
