@@ -4,15 +4,16 @@ namespace MiProyecto
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private string usuarioActual;
+
+        public MainWindow() : this("Usuario") { }
+
+        public MainWindow(string nombreUsuario)
         {
             InitializeComponent();
+            usuarioActual = nombreUsuario;
+            BtnPerfil.Content = usuarioActual;
         }
-
-
-        // =====================================
-        // TIENDA
-        // =====================================
 
         private void Tienda_Click(object sender, RoutedEventArgs e)
         {
@@ -23,11 +24,6 @@ namespace MiProyecto
             Perfil.Visibility = Visibility.Collapsed;
         }
 
-
-        // =====================================
-        // BIBLIOTECA
-        // =====================================
-
         private void Biblioteca_Click(object sender, RoutedEventArgs e)
         {
             Biblioteca.Visibility = Visibility.Visible;
@@ -36,11 +32,6 @@ namespace MiProyecto
             Soporte.Visibility = Visibility.Collapsed;
             Perfil.Visibility = Visibility.Collapsed;
         }
-
-
-        // =====================================
-        // COMUNIDAD
-        // =====================================
 
         private void Comunidad_Click(object sender, RoutedEventArgs e)
         {
@@ -51,11 +42,6 @@ namespace MiProyecto
             Perfil.Visibility = Visibility.Collapsed;
         }
 
-
-        // =====================================
-        // SOPORTE
-        // =====================================
-
         private void Soporte_Click(object sender, RoutedEventArgs e)
         {
             Biblioteca.Visibility = Visibility.Collapsed;
@@ -64,11 +50,6 @@ namespace MiProyecto
             Soporte.Visibility = Visibility.Visible;
             Perfil.Visibility = Visibility.Collapsed;
         }
-
-
-        // =====================================
-        // PERFIL
-        // =====================================
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
@@ -79,101 +60,71 @@ namespace MiProyecto
             Perfil.Visibility = Visibility.Visible;
         }
 
-
-        // =====================================
-        // JUEGOS DE LA BIBLIOTECA
-        // =====================================
-
         private void Juego1_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abriendo Minecraft");
+            MessageBox.Show("Abriendo Minecraft", "GameStation", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
 
         private void Juego2_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abriendo FC 27");
+            MessageBox.Show("Abriendo FC 27", "GameStation", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
 
         private void Juego3_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abriendo Overwatch");
+            MessageBox.Show("Abriendo Overwatch", "GameStation", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-
-        // =====================================
-        // JUEGOS DE LA TIENDA
-        // =====================================
 
         private void ComprarDiablo_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Comprando Diablo IV");
+            MessageBox.Show("Comprando Diablo IV", "GameStation Store", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
 
         private void ComprarFortnite_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Comprando Fortnite");
+            MessageBox.Show("Comprando Fortnite", "GameStation Store", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
 
         private void ComprarCallOfDuty_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Comprando Call of Duty");
+            MessageBox.Show("Comprando Call of Duty", "GameStation Store", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-
-        // =====================================
-        // COMUNIDAD
-        // =====================================
 
         private void Foro_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abriendo Foro");
+            MessageBox.Show("Abriendo Foro", "Comunidad", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
 
         private void Amigos_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abriendo Amigos");
+            MessageBox.Show("Abriendo Amigos", "Comunidad", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-
-        // =====================================
-        // SOPORTE
-        // =====================================
 
         private void Ayuda_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abriendo Ayuda");
+            MessageBox.Show("Abriendo Ayuda", "Soporte", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
 
         private void Contactar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abriendo Contactar");
+            MessageBox.Show("Abriendo Contactar", "Soporte", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-
-        // =====================================
-        // PERFIL
-        // =====================================
 
         private void MiCuenta_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abriendo Mi cuenta");
+            MessageBox.Show($"Cuenta activa de: {usuarioActual}", "Perfil", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-
-        // =====================================
-        // SALIR
-        // =====================================
+        private void CerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow login = new LoginWindow();
+            login.Show();
+            Close();
+        }
 
         private void Salir_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
     }
 }

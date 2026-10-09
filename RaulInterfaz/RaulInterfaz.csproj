@@ -8,4 +8,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Imagenes\FC27.png" />
+    <None Remove="Imagenes\Minecraft.png" />
+    <None Remove="Imagenes\Overwatch.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Imagenes\FC27.png" />
+    <Resource Include="Imagenes\Minecraft.png" />
+    <Resource Include="Imagenes\Overwatch.png" />
+  </ItemGroup>
+
 </Project>
