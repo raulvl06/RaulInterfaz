@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MiProyecto
+namespace ProyectoRaul
 {
     public partial class App : Application
     {

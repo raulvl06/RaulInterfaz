@@ -9,15 +9,68 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imagenes\Banner\CS2.png" />
+    <None Remove="Imagenes\Banner\Cyberpunk.png" />
+    <None Remove="Imagenes\Banner\FC27.png" />
+    <None Remove="Imagenes\Banner\GTAV.png" />
+    <None Remove="Imagenes\Banner\GTAVI.png" />
+    <None Remove="Imagenes\Banner\Minecraft.png" />
+    <None Remove="Imagenes\Banner\Overwatch.png" />
     <None Remove="Imagenes\FC27.png" />
+    <None Remove="Imagenes\Grid\CS2.png" />
+    <None Remove="Imagenes\Grid\Cyberpunk.png" />
+    <None Remove="Imagenes\Grid\FC27.png" />
+    <None Remove="Imagenes\Grid\GTAV.png" />
+    <None Remove="Imagenes\Grid\GTAVI.png" />
+    <None Remove="Imagenes\Grid\Minecraft.png" />
+    <None Remove="Imagenes\Grid\Overwatch.png" />
     <None Remove="Imagenes\Minecraft.png" />
     <None Remove="Imagenes\Overwatch.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Imagenes\FC27.png" />
-    <Resource Include="Imagenes\Minecraft.png" />
-    <Resource Include="Imagenes\Overwatch.png" />
+    <Content Include="Imagenes\Banner\CS2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Banner\Cyberpunk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Banner\FC27.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Banner\GTAV.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Banner\GTAVI.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Banner\Minecraft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Banner\Overwatch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Grid\CS2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Grid\Cyberpunk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Grid\FC27.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Grid\GTAV.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Grid\GTAVI.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Grid\Minecraft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Grid\Overwatch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

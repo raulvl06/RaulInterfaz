@@ -1,293 +1,385 @@
-﻿<Window x:Class="MiProyecto.MainWindow"
+﻿<Window x:Class="ProyectoRaul.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="GameStation"
         Width="1150"
         Height="720"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource BgRoot}">
+        Background="#171a21">
 
-    <Grid Margin="10">
-        <Border Background="{StaticResource BgPanel}" CornerRadius="10" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+    <Window.Resources>
+        <!-- ESTILO DE TARJETA STEAM OFICIAL CON HOVER Y CLIP -->
+        <Style x:Key="SteamGridCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#1b2838"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="BorderBrush" Value="#2a475e"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="ClipToBounds" Value="True"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.03" ScaleY="1.03"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
 
-                <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
-                <Border Grid.Row="0" Background="{StaticResource BgRoot}" CornerRadius="10,10,0,0">
-                    <Grid Margin="20,0">
-                        <!-- LOGO -->
-                        <TextBlock Text="GAMESTATION" FontSize="18" FontWeight="Black" Foreground="{StaticResource TextPrimary}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                        <!-- PESTAÑAS DE NAVEGACIÓN -->
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Button Content="Tienda" Click="Tienda_Click" Style="{StaticResource MenuButtonStyle}" Margin="4,0"/>
-                            <Button Content="Biblioteca" Click="Biblioteca_Click" Style="{StaticResource MenuButtonStyle}" Margin="4,0"/>
-                            <Button Content="Comunidad" Click="Comunidad_Click" Style="{StaticResource MenuButtonStyle}" Margin="4,0"/>
-                            <Button Content="Soporte" Click="Soporte_Click" Style="{StaticResource MenuButtonStyle}" Margin="4,0"/>
-                        </StackPanel>
+        <!-- BARRA DE NAVEGACIÓN SUPERIOR ESTILO STEAM -->
+        <Border Grid.Row="0" Background="#171a21" BorderBrush="#20252e" BorderThickness="0,0,0,1">
+            <Grid Margin="15,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Button x:Name="BtnNavTienda" Content="TIENDA" Click="Tienda_Click" Style="{StaticResource MenuButtonStyle}" FontSize="14" FontWeight="Bold" Foreground="#c6d4df" Margin="0,0,15,0"/>
+                    <Button x:Name="BtnNavBiblioteca" Content="BIBLIOTECA" Click="Biblioteca_Click" Style="{StaticResource MenuButtonStyle}" FontSize="14" FontWeight="Bold" Foreground="#66c0f4" Margin="0,0,15,0"/>
+                    <Button x:Name="BtnNavComunidad" Content="COMUNIDAD" Click="Comunidad_Click" Style="{StaticResource MenuButtonStyle}" FontSize="14" FontWeight="Bold" Foreground="#c6d4df" Margin="0,0,15,0"/>
+                    <Button x:Name="BtnNavSoporte" Content="SOPORTE" Click="Soporte_Click" Style="{StaticResource MenuButtonStyle}" FontSize="14" FontWeight="Bold" Foreground="#c6d4df" Margin="0,0,15,0"/>
+                </StackPanel>
 
-                        <!-- PERFIL DE USUARIO -->
-                        <Button x:Name="BtnPerfil" Content="Usuario" Click="Perfil_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    </Grid>
-                </Border>
-
-                <!-- CONTENEDOR DINÁMICO DE SECCIONES -->
-                <Border Grid.Row="1" Margin="15" Background="{StaticResource BgPanel}">
-                    <Grid x:Name="Contenido">
-
-                        <!-- ================= 1. BIBLIOTECA ================= -->
-                        <Grid x:Name="Biblioteca" Visibility="Visible">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!-- SUBMENÚ LATERAL -->
-                            <Border Grid.Column="0" Background="{StaticResource BgRoot}" CornerRadius="8">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <StackPanel Margin="12">
-                                        <TextBlock Text="TUS JUEGOS" FontSize="10" FontWeight="Bold" Foreground="{StaticResource TextSecondary}" Margin="8,10,8,10"/>
-                                        <Button Content="Minecraft" Click="Juego1_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="0,2"/>
-                                        <Button Content="FC 27" Click="Juego2_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="0,2"/>
-                                        <Button Content="Overwatch" Click="Juego3_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="0,2"/>
-                                        <Button Content="Grand Theft Auto V" Click="Juego4_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="0,2"/>
-                                        <Button Content="Cyberpunk 2077" Click="Juego5_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="0,2"/>
-                                        <Button Content="Counter-Strike 2" Click="Juego6_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="0,2"/>
-                                    </StackPanel>
-                                </ScrollViewer>
-                            </Border>
-
-                            <!-- GRID DE TARJETAS DE JUEGOS -->
-                            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Margin="15,0,0,0">
-                                <StackPanel>
-                                    <TextBlock Text="Biblioteca de Juegos" FontSize="22" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="5,5,5,15"/>
-                                    <WrapPanel>
-                                        <!-- Minecraft -->
-                                        <Border Width="190" Height="250" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                            <Grid>
-                                                <Image Source="/Imagenes/Minecraft.png" Stretch="UniformToFill" Opacity="0.85"/>
-                                                <StackPanel VerticalAlignment="Bottom" Background="#aa0b0f19">
-                                                    <Border Padding="10">
-                                                        <StackPanel>
-                                                            <TextBlock Text="Minecraft" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                            <TextBlock Text="Listo para jugar" FontSize="11" Foreground="{StaticResource AccentBlueHover}" Margin="0,2,0,0"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                        <!-- FC 27 -->
-                                        <Border Width="190" Height="250" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                            <Grid>
-                                                <Image Source="/Imagenes/FC27.png" Stretch="UniformToFill" Opacity="0.85"/>
-                                                <StackPanel VerticalAlignment="Bottom" Background="#aa0b0f19">
-                                                    <Border Padding="10">
-                                                        <StackPanel>
-                                                            <TextBlock Text="FC 27" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                            <TextBlock Text="Listo para jugar" FontSize="11" Foreground="{StaticResource AccentBlueHover}" Margin="0,2,0,0"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                        <!-- Overwatch -->
-                                        <Border Width="190" Height="250" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                            <Grid>
-                                                <Image Source="/Imagenes/Overwatch.png" Stretch="UniformToFill" Opacity="0.85"/>
-                                                <StackPanel VerticalAlignment="Bottom" Background="#aa0b0f19">
-                                                    <Border Padding="10">
-                                                        <StackPanel>
-                                                            <TextBlock Text="Overwatch" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                            <TextBlock Text="Listo para jugar" FontSize="11" Foreground="{StaticResource AccentBlueHover}" Margin="0,2,0,0"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                        <!-- GTA V -->
-                                        <Border Width="190" Height="250" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                            <Grid>
-                                                <Image Source="/Imagenes/GTAV.png" Stretch="UniformToFill" Opacity="0.85"/>
-                                                <StackPanel VerticalAlignment="Bottom" Background="#aa0b0f19">
-                                                    <Border Padding="10">
-                                                        <StackPanel>
-                                                            <TextBlock Text="GTA V" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                            <TextBlock Text="Listo para jugar" FontSize="11" Foreground="{StaticResource AccentBlueHover}" Margin="0,2,0,0"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                        <!-- Cyberpunk 2077 -->
-                                        <Border Width="190" Height="250" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                            <Grid>
-                                                <Image Source="/Imagenes/Cyberpunk.png" Stretch="UniformToFill" Opacity="0.85"/>
-                                                <StackPanel VerticalAlignment="Bottom" Background="#aa0b0f19">
-                                                    <Border Padding="10">
-                                                        <StackPanel>
-                                                            <TextBlock Text="Cyberpunk 2077" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                            <TextBlock Text="Listo para jugar" FontSize="11" Foreground="{StaticResource AccentBlueHover}" Margin="0,2,0,0"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-
-                                        <!-- Counter-Strike 2 -->
-                                        <Border Width="190" Height="250" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                            <Grid>
-                                                <Image Source="/Imagenes/CS2.png" Stretch="UniformToFill" Opacity="0.85"/>
-                                                <StackPanel VerticalAlignment="Bottom" Background="#aa0b0f19">
-                                                    <Border Padding="10">
-                                                        <StackPanel>
-                                                            <TextBlock Text="Counter-Strike 2" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                            <TextBlock Text="Listo para jugar" FontSize="11" Foreground="{StaticResource AccentBlueHover}" Margin="0,2,0,0"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-                                    </WrapPanel>
-                                </StackPanel>
-                            </ScrollViewer>
-                        </Grid>
-
-                        <!-- ================= 2. TIENDA ================= -->
-                        <ScrollViewer x:Name="Tienda" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
-                            <StackPanel Margin="10">
-                                <TextBlock Text="Tienda Destacada" FontSize="22" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="5,5,5,15"/>
-                                <WrapPanel>
-                                    <!-- Diablo IV -->
-                                    <Border Width="190" Height="290" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="150"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Row="0" Source="/Imagenes/DiabloIV.png" Stretch="UniformToFill"/>
-                                            <StackPanel Grid.Row="1" Margin="12" VerticalAlignment="Top">
-                                                <TextBlock Text="Diablo IV" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                <TextBlock Text="60.00 €" FontSize="13" Foreground="{StaticResource TextSecondary}" FontWeight="SemiBold" Margin="0,2,0,10"/>
-                                                <Button Content="Comprar" Height="30" Click="ComprarDiablo_Click" Style="{StaticResource PrimaryButtonStyle}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-
-                                    <!-- Fortnite -->
-                                    <Border Width="190" Height="290" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="150"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Row="0" Source="/Imagenes/Fortnite.png" Stretch="UniformToFill"/>
-                                            <StackPanel Grid.Row="1" Margin="12" VerticalAlignment="Top">
-                                                <TextBlock Text="Fortnite" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                <TextBlock Text="Gratis" FontSize="13" Foreground="#22c55e" FontWeight="SemiBold" Margin="0,2,0,10"/>
-                                                <Button Content="Obtener" Height="30" Click="ComprarFortnite_Click" Style="{StaticResource PrimaryButtonStyle}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-
-                                    <!-- Call of Duty -->
-                                    <Border Width="190" Height="290" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="150"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Row="0" Source="/Imagenes/CoD.png" Stretch="UniformToFill"/>
-                                            <StackPanel Grid.Row="1" Margin="12" VerticalAlignment="Top">
-                                                <TextBlock Text="Call of Duty" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                <TextBlock Text="70.00 €" FontSize="13" Foreground="{StaticResource TextSecondary}" FontWeight="SemiBold" Margin="0,2,0,10"/>
-                                                <Button Content="Comprar" Height="30" Click="ComprarCallOfDuty_Click" Style="{StaticResource PrimaryButtonStyle}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-
-                                    <!-- EA Sports FC 27 -->
-                                    <Border Width="190" Height="290" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="150"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Row="0" Source="/Imagenes/FC27.png" Stretch="UniformToFill"/>
-                                            <StackPanel Grid.Row="1" Margin="12" VerticalAlignment="Top">
-                                                <TextBlock Text="EA Sports FC 27" FontSize="13" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                <TextBlock Text="69.99 €" FontSize="13" Foreground="{StaticResource TextSecondary}" FontWeight="SemiBold" Margin="0,2,0,10"/>
-                                                <Button Content="Comprar" Height="30" Click="ComprarFC27_Click" Style="{StaticResource PrimaryButtonStyle}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-
-                                    <!-- Grand Theft Auto VI -->
-                                    <Border Width="190" Height="290" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="150"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Row="0" Source="/Imagenes/GTAVI.png" Stretch="UniformToFill"/>
-                                            <StackPanel Grid.Row="1" Margin="12" VerticalAlignment="Top">
-                                                <TextBlock Text="GTA VI" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                <TextBlock Text="79.99 €" FontSize="13" Foreground="{StaticResource TextSecondary}" FontWeight="SemiBold" Margin="0,2,0,10"/>
-                                                <Button Content="Comprar" Height="30" Click="ComprarGTA6_Click" Style="{StaticResource PrimaryButtonStyle}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-
-                                    <!-- Valorant -->
-                                    <Border Width="190" Height="290" Margin="8" Background="{StaticResource BgCard}" CornerRadius="8" BorderBrush="{StaticResource BorderDark}" BorderThickness="1">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="150"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Row="0" Source="/Imagenes/Valorant.png" Stretch="UniformToFill"/>
-                                            <StackPanel Grid.Row="1" Margin="12" VerticalAlignment="Top">
-                                                <TextBlock Text="Valorant" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
-                                                <TextBlock Text="Gratis" FontSize="13" Foreground="#22c55e" FontWeight="SemiBold" Margin="0,2,0,10"/>
-                                                <Button Content="Obtener" Height="30" Click="ComprarValorant_Click" Style="{StaticResource PrimaryButtonStyle}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-                                </WrapPanel>
-                            </StackPanel>
-                        </ScrollViewer>
-
-                        <!-- ================= 3. COMUNIDAD ================= -->
-                        <StackPanel x:Name="Comunidad" Visibility="Collapsed" Margin="15">
-                            <TextBlock Text="Comunidad" FontSize="22" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,15"/>
-                            <Button Content="Foros de Discusión" Width="220" Height="40" Click="Foro_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,6"/>
-                            <Button Content="Lista de Amigos" Width="220" Height="40" Click="Amigos_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,6"/>
-                        </StackPanel>
-
-                        <!-- ================= 4. SOPORTE ================= -->
-                        <StackPanel x:Name="Soporte" Visibility="Collapsed" Margin="15">
-                            <TextBlock Text="Centro de Asistencia" FontSize="22" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,15"/>
-                            <Button Content="Preguntas Frecuentes" Width="220" Height="40" Click="Ayuda_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,6"/>
-                            <Button Content="Contactar con Soporte" Width="220" Height="40" Click="Contactar_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,6"/>
-                        </StackPanel>
-
-                        <!-- ================= 5. PERFIL ================= -->
-                        <StackPanel x:Name="Perfil" Visibility="Collapsed" Margin="15">
-                            <TextBlock Text="Configuración de Perfil" FontSize="22" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,15"/>
-                            <Button Content="Detalles de Cuenta" Width="220" Height="40" Click="MiCuenta_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,6"/>
-                            <Button Content="Cerrar Sesión" Width="220" Height="40" Click="CerrarSesion_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Left" Margin="0,6"/>
-                            <Button Content="Salir de GameStation" Width="220" Height="40" Click="Salir_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Left" Margin="0,6"/>
-                        </StackPanel>
-
-                    </Grid>
-                </Border>
+                <Button x:Name="BtnPerfil" Content="Usuario" Click="Perfil_Click" Style="{StaticResource MenuButtonStyle}" Foreground="#c6d4df" FontSize="13" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </Grid>
         </Border>
+
+        <!-- CONTENIDO PRINCIPAL DE LA APLICACIÓN -->
+        <Grid Grid.Row="1" x:Name="Contenido" Background="#1e232d">
+
+            <!-- ================= 1. BIBLIOTECA ================= -->
+            <Grid x:Name="Biblioteca" Visibility="Visible">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- BARRA LATERAL IZQUIERDA -->
+                <Border Grid.Column="0" Background="#181b23" BorderBrush="#222834" BorderThickness="0,0,1,0">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="10,12">
+                            <!-- BUSCADOR SUPERIOR -->
+                            <Border Background="#212733" CornerRadius="3" Height="26" Margin="0,0,0,12" Padding="8,0">
+                                <TextBlock Text="🔍  Buscar juego..." Foreground="#616875" VerticalAlignment="Center" FontSize="11"/>
+                            </Border>
+
+                            <TextBlock Text="▾ FAVORITOS (5)" FontSize="10" FontWeight="Bold" Foreground="#8f98a0" Margin="4,5,4,8"/>
+
+                            <Button Content="🎮  Minecraft" Tag="Minecraft" Click="AbrirDetalleJuego_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Foreground="#c6d4df" FontSize="12" Margin="0,1"/>
+                            <Button Content="🎮  FC 27" Tag="FC 27" Click="AbrirDetalleJuego_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Foreground="#c6d4df" FontSize="12" Margin="0,1"/>
+                            <Button Content="🎮  Grand Theft Auto V" Tag="Grand Theft Auto V" Click="AbrirDetalleJuego_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Foreground="#c6d4df" FontSize="12" Margin="0,1"/>
+                            <Button Content="🎮  Cyberpunk 2077" Tag="Cyberpunk 2077" Click="AbrirDetalleJuego_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Foreground="#c6d4df" FontSize="12" Margin="0,1"/>
+                            <Button Content="🎮  Counter-Strike 2" Tag="Counter-Strike 2" Click="AbrirDetalleJuego_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Foreground="#c6d4df" FontSize="12" Margin="0,1"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+
+                <!-- VISTA PRINCIPAL DE TARJETAS (GRID) -->
+                <Grid Grid.Column="1" Background="#1e232d">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="38"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- CABECERA DE FILTRADO -->
+                    <Border Grid.Row="0" Background="#1b1f28" Padding="15,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="Todos los juegos (5)" Foreground="#8f98a0" FontSize="12" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- GRID DE TARJETAS -->
+                    <ScrollViewer x:Name="PanelListaJuegos" Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="10" Visibility="Visible">
+                        <WrapPanel>
+                            <!-- 1. Minecraft -->
+                            <Border Width="170" Height="240" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                                <Button Click="TarjetaJuego_Click" Tag="Minecraft" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Grid>
+                                        <Image Source="Imagenes/Grid/Minecraft.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </Grid>
+                                </Button>
+                            </Border>
+
+                            <!-- 2. FC 27 -->
+                            <Border Width="170" Height="240" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                                <Button Click="TarjetaJuego_Click" Tag="FC 27" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Grid>
+                                        <Image Source="Imagenes/Grid/FC27.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </Grid>
+                                </Button>
+                            </Border>
+
+                            <!-- 3. GTA V -->
+                            <Border Width="170" Height="240" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                                <Button Click="TarjetaJuego_Click" Tag="Grand Theft Auto V" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Grid>
+                                        <Image Source="Imagenes/Grid/GTAV.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </Grid>
+                                </Button>
+                            </Border>
+
+                            <!-- 4. Cyberpunk 2077 -->
+                            <Border Width="170" Height="240" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                                <Button Click="TarjetaJuego_Click" Tag="Cyberpunk 2077" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Grid>
+                                        <Image Source="Imagenes/Grid/Cyberpunk.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </Grid>
+                                </Button>
+                            </Border>
+
+                            <!-- 5. Counter-Strike 2 -->
+                            <Border Width="170" Height="240" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                                <Button Click="TarjetaJuego_Click" Tag="Counter-Strike 2" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Grid>
+                                        <Image Source="Imagenes/Grid/CS2.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </Grid>
+                                </Button>
+                            </Border>
+                        </WrapPanel>
+                    </ScrollViewer>
+
+                    <!-- DETALLE DE JUEGO (HERO VISTA) -->
+                    <ScrollViewer x:Name="PanelDetalleJuego" Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="15" Visibility="Collapsed">
+                        <StackPanel>
+                            <Button Content="← Volver a la Biblioteca" Click="VolverBiblioteca_Click" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+
+                            <Border Height="250" CornerRadius="4" ClipToBounds="True" Background="#1b2838">
+                                <Grid>
+                                    <Image x:Name="ImgBannerJuego" Stretch="UniformToFill" Opacity="0.9" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <TextBlock x:Name="TxtTituloJuegoDetalle" Text="TITULO" FontSize="28" FontWeight="Black" Foreground="#ffffff" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20"/>
+                                </Grid>
+                            </Border>
+
+                            <Border Background="#171a21" CornerRadius="4" Margin="0,10,0,0" Padding="15">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Content="▶ JUGAR" Width="120" Height="36" Click="EjecutarJuegoDetalle_Click" Style="{StaticResource PrimaryButtonStyle}"/>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+
+            <!-- ================= 2. TIENDA ================= -->
+            <ScrollViewer x:Name="Tienda" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="15">
+                    <TextBlock Text="Tienda Destacada" FontSize="20" FontWeight="Bold" Foreground="#ffffff" Margin="5,5,5,15"/>
+                    <WrapPanel>
+                        <!-- Minecraft -->
+                        <Border Width="310" Height="175" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                            <Button Click="ComprarMinecraft_Click" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Grid>
+                                    <Image Source="Imagenes/Banner/Minecraft.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#d00f172a" Padding="10,5">
+                                        <TextBlock Text="29,99€" FontSize="13" FontWeight="Bold" Foreground="#ffffff"/>
+                                    </Border>
+                                </Grid>
+                            </Button>
+                        </Border>
+
+                        <!-- FC 27 -->
+                        <Border Width="310" Height="175" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                            <Button Click="ComprarFC27_Click" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Grid>
+                                    <Image Source="Imagenes/Banner/FC27.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#d00f172a" Padding="10,5">
+                                        <TextBlock Text="69,99€" FontSize="13" FontWeight="Bold" Foreground="#ffffff"/>
+                                    </Border>
+                                </Grid>
+                            </Button>
+                        </Border>
+
+                        <!-- Overwatch -->
+                        <Border Width="310" Height="175" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                            <Button Click="ComprarOverwatch_Click" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Grid>
+                                    <Image Source="Imagenes/Banner/Overwatch.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#d00f172a" Padding="10,5">
+                                        <TextBlock Text="Gratis" FontSize="13" FontWeight="Bold" Foreground="#34d399"/>
+                                    </Border>
+                                </Grid>
+                            </Button>
+                        </Border>
+
+                        <!-- Grand Theft Auto V -->
+                        <Border Width="310" Height="175" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                            <Button Click="ComprarGTA5_Click" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Grid>
+                                    <Image Source="Imagenes/Banner/GTAV.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#d00f172a" Padding="10,5">
+                                        <TextBlock Text="29,99€" FontSize="13" FontWeight="Bold" Foreground="#ffffff"/>
+                                    </Border>
+                                </Grid>
+                            </Button>
+                        </Border>
+
+                        <!-- Grand Theft Auto VI -->
+                        <Border Width="310" Height="175" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                            <Button Click="ComprarGTA6_Click" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Grid>
+                                    <Image Source="Imagenes/Banner/GTAVI.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#d00f172a" Padding="10,5">
+                                        <TextBlock Text="79,99€" FontSize="13" FontWeight="Bold" Foreground="#ffffff"/>
+                                    </Border>
+                                </Grid>
+                            </Button>
+                        </Border>
+
+                        <!-- Cyberpunk 2077 -->
+                        <Border Width="310" Height="175" Margin="8" Style="{StaticResource SteamGridCardStyle}">
+                            <Button Click="ComprarCyberpunk_Click" Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Grid>
+                                    <Image Source="Imagenes/Banner/Cyberpunk.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#d00f172a" Padding="10,5">
+                                        <TextBlock Text="59,99€" FontSize="13" FontWeight="Bold" Foreground="#ffffff"/>
+                                    </Border>
+                                </Grid>
+                            </Button>
+                        </Border>
+                    </WrapPanel>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ================= 3. COMUNIDAD ================= -->
+            <StackPanel x:Name="Comunidad" Visibility="Collapsed" Margin="20">
+                <TextBlock Text="Comunidad" FontSize="20" FontWeight="Bold" Foreground="#ffffff" Margin="0,0,0,15"/>
+                <Button Content="Foros de Discusión" Width="200" Height="36" Click="Foro_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,5"/>
+                <Button Content="Lista de Amigos" Width="200" Height="36" Click="Amigos_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,5"/>
+            </StackPanel>
+
+            <!-- ================= 4. SOPORTE ================= -->
+            <StackPanel x:Name="Soporte" Visibility="Collapsed" Margin="20">
+                <TextBlock Text="Centro de Asistencia" FontSize="20" FontWeight="Bold" Foreground="#ffffff" Margin="0,0,0,15"/>
+                <Button Content="Preguntas Frecuentes" Width="200" Height="36" Click="Ayuda_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,5"/>
+                <Button Content="Contactar con Soporte" Width="220" Height="36" Click="Contactar_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,5"/>
+            </StackPanel>
+
+            <!-- ================= 5. PERFIL ================= -->
+            <StackPanel x:Name="Perfil" Visibility="Collapsed" Margin="20">
+                <TextBlock Text="Configuración de Perfil" FontSize="22" FontWeight="Bold" Foreground="#ffffff" Margin="0,0,0,15"/>
+                <Button Content="Detalles de Cuenta" Width="220" Height="40" Click="MiCuenta_Click" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,6"/>
+                <Button Content="Cerrar Sesión" Width="220" Height="40" Click="CerrarSesion_Click" HorizontalAlignment="Left" Margin="0,6">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                            <Setter Property="Background" Value="#f59e0b"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#fbbf24"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Content="Salir de GameStation" Width="220" Height="40" Click="Salir_Click" HorizontalAlignment="Left" Margin="0,6">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                            <Setter Property="Background" Value="#ef4444"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#f87171"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Window>
